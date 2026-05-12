@@ -1,1 +1,10 @@
-n the context of Rocket.Chat and Meteor.js, a DDP client is basically a "Live Wire" between your app and the server. Unlike a normal website that has to "refresh" to see new data, a DDP client stays open and listens.Main Features of a DDP ClientReal-Time Subscriptions (Pub/Sub): You don't "GET" data; you "Subscribe" to it. When something changes on the server (like a new message), the server pushes it to the client instantly.RPC (Remote Procedure Calls): Instead of hitting URL endpoints, you call "Methods" on the server as if they were local functions (e.g., login, sendMessage).Latency Compensation: If a user sends a message, the client shows it in the UI immediately before the server even confirms it, making the app feel "lag-free."Sticky Sessions: It uses the ec_token (from your earlier code) to automatically reconnect and re-authenticate if the internet drops.
+### DDP Client in Rocket.Chat & Meteor.js
+
+In the context of **Rocket.Chat** and **Meteor.js**, a DDP (Distributed Data Protocol) client acts as a **"Live Wire"** between your application and the server. Unlike traditional websites that require a refresh to fetch new data, a DDP client maintains a persistent connection to listen for changes in real-time.
+
+#### 🚀 Main Features
+
+* **Real-Time Subscriptions (Pub/Sub):** You don't "GET" data; you **Subscribe** to it. When data changes on the server (e.g., a new message is received), the server pushes the update to the client instantly.
+* **RPC (Remote Procedure Calls):** Instead of hitting standard URL endpoints, you call **Methods** on the server as if they were local functions (e.g., `login`, `sendMessage`).
+* **Latency Compensation:** When a user sends a message, the client renders it in the UI immediately—before the server confirms receipt. This makes the interface feel "lag-free."
+* **Sticky Sessions:** It utilizes the `rc_token` to automatically reconnect and re-authenticate the session if the network connection drops.
