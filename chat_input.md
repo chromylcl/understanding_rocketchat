@@ -22,3 +22,38 @@ sequenceDiagram
     Instance->>Backend: fetch("/chat.update")
     Note over Backend: Processes and updates database
 ```
+
+
+## handleEditMessage() function:
+### Detailed `handleEditMessage` Execution Flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant UI as Textarea / UI Elements
+    participant State as React State Management
+    participant API as Backend API Service
+
+    Note over UI, State: Function Invoked: handleEditMessage(message)
+    
+    %% Immediate UI Actions
+    rect rgb(240, 248, 255)
+        Note over UI: Clear textarea instantly
+        Note over UI: Disable send button
+    end
+
+    %% State & Data Preparation
+    State->>State: Get message ID from context/props
+    State->>State: Exit edit mode (reset edit state)
+    
+    %% Network Call
+    State->>API: Call backend API with message updates
+    
+    %% Error Handling Branch
+    alt API Call Fails
+        API-->>State: Return failure / timeout
+        State->>UI: Trigger error handling (re-enable UI / alert user)
+    else API Call Succeeds
+        API-->>State: Return success confirmation
+    end
+```
